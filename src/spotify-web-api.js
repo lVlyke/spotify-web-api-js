@@ -17,16 +17,7 @@ var SpotifyWebApi = (function() {
   var _promiseProvider = function(promiseFunction, onAbort) {
     var returnedPromise;
     if (_promiseImplementation !== null) {
-      var deferred = _promiseImplementation.defer();
-      promiseFunction(
-        function(resolvedResult) {
-          deferred.resolve(resolvedResult);
-        },
-        function(rejectedResult) {
-          deferred.reject(rejectedResult);
-        }
-      );
-      returnedPromise = deferred.promise;
+      returnedPromise = new _promiseImplementation(promiseFunction);
     } else {
       if (typeof window !== 'undefined' && window.Promise) {
         returnedPromise = new window.Promise(promiseFunction);
