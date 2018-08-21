@@ -28,7 +28,7 @@ var SpotifyWebApi = (function() {
       );
       returnedPromise = deferred.promise;
     } else {
-      if (window && window.Promise) {
+      if (typeof window !== 'undefined' && window.Promise) {
         returnedPromise = new window.Promise(promiseFunction);
       }
     }
